@@ -6,6 +6,12 @@ UnitsPerBlock = {
 gdOBJToTiledGrid = {
     "offset": 1,
     "unittype": "GD",
+    fliptable: {
+        N: 0,
+        V: 180,
+        H: 0,
+        VH: 180
+    },
     1: 2,
     2: {
         rot: {
@@ -167,6 +173,7 @@ gdOBJToTiledGrid = {
 gdOBJToTiledSP = {
     offset: 16385,
     unittype: "GD",
+    1: 43,
     10: 14,
     11: 15,
     12: 2,
@@ -198,12 +205,13 @@ gdOBJToTiledSP = {
     60: 51,
     61: { offset: { y: -11 }, ID: 38 },
     67: { offset: { y: -13 }, ID: 17 },
-
+    103: {offset: {y:-6}, ID: 34},
+    1329: 89,
 }
 
 ObjectLayerPrio = {
     ID: "Tiled",
-    L2: [expandRanges("22,38-42,337-342,355-366,1360-1421,1432-1435")]
+    L1: [expandRanges("3456-3494")]
 }
 
 function expandRanges(rangeStr) {
@@ -219,9 +227,43 @@ function expandRanges(rangeStr) {
         });
 }
 
-function rotationFlipToRotation(VFlip, HFlip, Rotation, Fliptable = {}) {
-    return (VFlip * 180 + Rotation) % 360
+portalfliptable = {
+    V: 0,
+    H: 270,
+    VH: 270
 }
+
+SPFlipTable = {
+    IDtype:"GD",
+    default: {
+        V: 180,
+        H: 0,
+        VH: 180
+    },
+    10: portalfliptable,
+    11: portalfliptable,
+    12: portalfliptable,
+    13: portalfliptable,
+    45: portalfliptable,
+    46: portalfliptable,
+    47: portalfliptable,
+    99: portalfliptable,
+    101: portalfliptable,
+    111: portalfliptable,
+    200: portalfliptable,
+    201: portalfliptable,
+    202: portalfliptable,
+    203: portalfliptable,
+    286: portalfliptable,
+    287: portalfliptable,
+    660: portalfliptable,
+    745: portalfliptable,
+    1131: portalfliptable,
+    1134: portalfliptable,
+    1933: portalfliptable,
+    2926: portalfliptable
+}
+
 
 //console.log(JSON.stringify(gdOBJToTiledGrid))
 

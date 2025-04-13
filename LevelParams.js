@@ -36,3 +36,8 @@ function getBestSize(data) {
         height: Math.floor(maxY / 30) + 10
     };
 }
+
+module.exports = {
+    findDuplicatePositions,
+    getBestSize
+};
