@@ -7,6 +7,7 @@ const parsedLevelData = JSON.parse(fs.readFileSync("parsed_level.json", 'utf8'))
 
 // Now you can work with 'parsedLevelData'
 
+
 lint.LintGMD(parsedLevelData)
 
 console.log(LevelParams.getBestSize(parsedLevelData["data"]));

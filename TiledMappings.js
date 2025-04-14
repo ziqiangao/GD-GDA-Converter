@@ -3,6 +3,20 @@ UnitsPerBlock = {
     Tiled: 16
 }
 
+portalfliptable = {
+    N: 0,
+    V: 0,
+    H: 270,
+    VH: 270
+}
+
+cornerblockfliptable = {
+    N: 0,
+    V: 270,
+    H: 90,
+    VH: 180
+}
+
 gdOBJToTiledGrid = {
     "offset": 1,
     "unittype": "GD",
@@ -22,12 +36,7 @@ gdOBJToTiledGrid = {
         }
     },
     3: {
-        fliptable: {
-            N: 0,
-            V: 270,
-            H: 90,
-            VH: 180
-        },
+        fliptable: cornerblockfliptable,
         rot: {
             0: 8,
             90: 9,
@@ -36,12 +45,7 @@ gdOBJToTiledGrid = {
         }
     },
     4: {
-        fliptable: {
-            N: 0,
-            V: 270,
-            H: 90,
-            VH: 180
-        },
+        fliptable: cornerblockfliptable,
         rot: {
             0: 12,
             90: 13,
@@ -124,12 +128,7 @@ gdOBJToTiledGrid = {
         }
     },
     71: {
-        fliptable: {
-            N: 0,
-            V: 270,
-            H: 90,
-            VH: 180
-        },
+        fliptable: cornerblockfliptable,
         rot: {
             0: 69,
             90: 70,
@@ -138,12 +137,7 @@ gdOBJToTiledGrid = {
         }
     },
     72: {
-        fliptable: {
-            N: 0,
-            V: 270,
-            H: 90,
-            VH: 180
-        },
+        
         rot: {
             0: 73,
             90: 74,
@@ -227,18 +221,15 @@ function expandRanges(rangeStr) {
         });
 }
 
-portalfliptable = {
-    V: 0,
-    H: 270,
-    VH: 270
-}
+
 
 SPFlipTable = {
     IDtype:"GD",
     default: {
         V: 180,
         H: 0,
-        VH: 180
+        VH: 180,
+        N: 0
     },
     10: portalfliptable,
     11: portalfliptable,
@@ -264,12 +255,21 @@ SPFlipTable = {
     2926: portalfliptable
 }
 
+function flipToFlipString(flipX, flipY) {
+    if (!flipX && !flipY) return "N";
+    if (flipX && flipY) return "VH";
+    if (flipY) return "V";
+    if (flipX) return "H";
+}
+
 
 //console.log(JSON.stringify(gdOBJToTiledGrid))
 
 module.exports = {
     gdOBJToTiledGrid,
     gdOBJToTiledSP,
-    ObjectLayerPrio
+    ObjectLayerPrio,
+    SPFlipTable,
+    flipToFlipString
 };
 
